@@ -5,15 +5,35 @@ POST http://localhost:3000/user/register
 Content-Type: application/json
 
 {
-    "email": "11Anonymus@gmail.com",
+    "email": "11Anonymur26s@gmail.com",
     "password": "123456"
 }
 
 ###
 POST http://localhost:3000/user/refresh-token
+Content-Type: application/json
 
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGQ0NTRhOTdjM2NjNTM4YzFiMWViNGMiLCJpYXQiOjE2OTE2NTc4MDQsImV4cCI6MTcyMzIxNTQwNH0.aJIH3XqUqDYY-tEaeL9ekPsKduBzXZWP6TVjgILiiV0"
+}
 ###
 POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "email": "11Anonymur26s@gmail.com",
+    "password": "123456"
+}
+
 
 ###
-POST http://localhost:3000/user/logout
+DELETE http://localhost:3000/user/logout
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGQ0NTRhOTdjM2NjNTM4YzFiMWViNGMiLCJpYXQiOjE2OTIwMDY3MDcsImV4cCI6MTcyMzU2NDMwN30.vHInXbBGi3gTdE-gYkZms65tYJrd8zPWRgR0nZjs_d8"
+}
+
+###
+GET http://localhost:3000/user/getListsts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGQ0NTRhOTdjM2NjNTM4YzFiMWViNGMiLCJpYXQiOjE2OTE2NTg3NzQsImV4cCI6MTY5MTY1ODgzNH0.y8RzPpvVRahX0eqfMa_5qEzfGvTKdr0SNqdelbPGNxI

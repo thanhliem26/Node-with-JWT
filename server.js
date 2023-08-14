@@ -3,6 +3,8 @@ const app = express();
 const createError = require('http-errors');
 
 require("dotenv").config();
+const client = require('./helper/connection_redis');
+
 // require('./helper/connections_mongodb');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
@@ -25,7 +27,6 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log("🚀 ~ err:", err)
   res.json({ status: err.status || 500, message: err.message });
 });
 

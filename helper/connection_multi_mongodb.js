@@ -7,8 +7,8 @@ function newConnection(uri) {
         useUnifiedTopology: true
     });
 
-    connection.on('connected', () => {
-        console.log("Mongodb connected")
+    connection.on('connected', function () {
+        console.log("Mongodb connected:", this.name)
     })
     
     connection.on('disconnected', () => {

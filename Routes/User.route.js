@@ -1,49 +1,16 @@
 const express = require("express");
 const route = express.Router();
-const createError = require("http-errors");
+const { verifyAccessToken } = require("../helper/jwt_service")
+const { register, refreshToken, login, logout, getListsts} = require('../controllers/user.controller')
 
-const User = require("../Models/User.modal");
-const { userValidate } = require('../helper/validation');
+ route.post("/register", register);
 
-route.post("/register", async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-    const { error } = userValidate(req.body);
-    console.log("🚀 ~ error:", error)
+route.post("/refresh-token", refreshToken);
 
-    if (error) {
-      throw createError(error.details[0].message);
-    }
+route.post("/login", login);
 
-    const isExits = await User.findOne({
-        username: email
-    })
+route.delete("/logout", logout);
 
-    if(isExits) {
-        throw createError.Conflict(`${email} is ready been register!`)
-    }
-
-    const isCreate = await User.create({
-        username: email,
-        password,
-    })
-
-    return res.json({status: 'ok', element: isCreate})
-  } catch (err) {
-    next(err);
-  }
-});
-
-route.post("/refresh-token", (req, res, next) => {
-  res.send("function refresh-token");
-});
-
-route.post("/login", (req, res, next) => {
-  res.send("function login");
-});
-
-route.post("/logout", (req, res, next) => {
-  res.send("function logout");
-});
+route.get('/getListsts', verifyAccessToken, getListsts)
 
 module.exports = route;
